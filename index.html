@@ -1,304 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/style.css">
-    <title>維基百科主題清單</title>
-    <img src="data:image/jpeg;base64,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"></src>
-    <!-- Ionic CDN -->
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"
-    />
+    <title>維基百科清單 - 首頁</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <!-- 更新 Ionicons 腳本 -->
+    <script type="module" src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.js"></script>
     <style>
-      .item-content {
-        width: 100%;
+      ion-content {
+        --background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       }
-      .item-title {
-        font-weight: bold;
-        margin: 0.25rem 0;
-      }
-      .item-subtitle {
-        color: var(--ion-color-medium);
-        font-size: 0.9em;
-      }
-      .tag-container {
+      .welcome-container {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        padding: 2rem;
       }
-      .video-container {
-        max-width: 100%;
-        margin: 0.5rem 0;
+      .welcome-container h1 {
+        font-size: 2rem;
+        color: var(--ion-color-primary);
+        margin-bottom: 1rem;
+      }
+      .welcome-container p {
+        font-size: 1.2rem;
+        color: var(--ion-color-medium);
+        margin-bottom: 2rem;
+      }
+      ion-button {
+        margin: 0.5rem;
       }
     </style>
   </head>
   <body>
     <ion-app>
       <ion-header>
-        <ion-toolbar>
-          <ion-title>維基百科主題清單</ion-title>
+        <ion-toolbar color="primary">
+          <ion-title>維基百科清單</ion-title>
         </ion-toolbar>
-        <ion-searchbar placeholder="搜尋..."></ion-searchbar>
-        <ion-item>
-          <ion-select label="分類" interface="popover">
-            <ion-select-option value="">全部</ion-select-option>
-            <ion-select-option value="程式入門">程式入門</ion-select-option>
-            <ion-select-option value="程式進階">程式進階</ion-select-option>
-            <ion-select-option value="開發及管理">開發及管理</ion-select-option>
-          </ion-select>
-        </ion-item>
       </ion-header>
-
       <ion-content>
-        <ion-list id="item-list">
-          <!-- 清單項目將在這裡動態生成 -->
-        </ion-list>
+        <div class="welcome-container">
+          <h1>維基百科清單</h1>
+          <p>探索各種資訊，請先注冊或登入以繼續</p>
+          <ion-button href="register.html" color="primary">注冊</ion-button>
+          <ion-button href="login.html" fill="outline">登入</ion-button>
+        </div>
       </ion-content>
     </ion-app>
-
-    <script>
-      const items = [
-  {
-    title: 'Python 基礎入門',
-    language: 'Python 3',
-    level: '入門',
-    details: '從零開始學習 Python 程式設計，包含變數、流程控制、函式等基礎概念。',
-    category: '程式入門',
-    imageUrl: 'https://s.eslite.com/Upload/Product/201807/o/636680181352320000.jpg',
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-  },
-  {
-    title: 'JavaScript 進階技巧',
-    language: 'JavaScript',
-    level: '進階',
-    details: '深入了解 JavaScript 的高級功能，包括閉包、異步編程和 ES6 語法。',
-    category: '程式進階',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDLYYcrMAiF1nwpLP0bf9GWVrLeQergHE-AQ&s',
-    videoUrl: 'https://www.youtube.com/embed/NHliVGQef-4',
-  },
-  {
-    title: 'HTML5 與 CSS3 實作',
-    language: 'HTML/CSS',
-    level: '入門',
-    details: '學習如何使用 HTML5 和 CSS3 創建現代網頁，包含布局和樣式。',
-    category: '開發及管理',
-    imageUrl: 'https://www.flag.com.tw/assets/img/category/F0467.jpg',
-    videoUrl: 'https://www.youtube.com/embed/fa214Ct6t9w',
-  },
-  {
-    title: 'React 基礎',
-    language: 'JavaScript',
-    level: '入門',
-    details: '掌握 React 的基本概念，學習如何建立可重用的組件。',
-    category: '開發及管理',
-    imageUrl: 'https://miro.medium.com/v2/resize:fit:1400/1*q7nz8SQl6pUI-D-rPZmCzg.jpeg',
-    videoUrl: 'https://www.youtube.com/embed/aBTiZfShe-4',
-  },
-  {
-    title: 'Node.js 後端開發',
-    language: 'JavaScript',
-    level: '進階',
-    details: '學習如何使用 Node.js 開發伺服器端應用程式，並處理 API 請求。',
-    category: '開發及管理',
-    imageUrl: 'https://www.ittraining.com.tw/ittraining/images/2017_image/full_stack_developer/fullweb800x430.jpg',
-    videoUrl: 'https://www.youtube.com/embed/zHB1dn8FU44',
-  },
-
-
-  {
-    title: 'Django 網頁框架',
-    language: 'Python',
-    level: '進階',
-    details: '學習如何使用 Django 建立強大的網頁應用程式。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnedl_R0l_y9Tu6as8Yn4GGu-wd8FJsUBnFg&s',
-    videoUrl: 'https://www.youtube.com/embed/YJwQLW743xU',
-  },
-  {
-    title: 'Vue.js 基礎',
-    language: 'JavaScript',
-    level: '入門',
-    details: '了解 Vue.js 的基本概念，學習如何構建互動式前端應用。',
-    category: '開發及管理',
-    imageUrl: 'https://cn.vuejs.org/assets/components.B1JZbf0_.png',
-    videoUrl: 'https://www.youtube.com/embed/7hGSiZqzrHM?si=jGcBMAb6cmdbmWXq',
-  },
-  {
-    title: 'PHP 入門',
-    language: 'PHP',
-    level: '入門',
-    details: '學習 PHP 的基本語法，建立動態網頁應用。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK-JA_Q_aeruwpfSZh2I6O2AHwg9uXvNqaFg&s',
-    videoUrl: 'https://www.youtube.com/embed/WN5vfUwuz5s?si=Xp02VaNCQnAiPRsl',
-  },
-  {
-    title: 'SQL 資料庫管理',
-    language: 'SQL',
-    level: '進階',
-    details: '學習如何使用 SQL 進行資料庫查詢和管理。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy4LL0y0LvvN9jCUR-5K7v5U-xo-AA0BnCXQ&s',
-    videoUrl: 'https://www.youtube.com/embed/G_zGBR0mQmE?si=WfPYUPLLAvNr5y7S',
-  },
-  {
-    title: 'Flutter 應用開發',
-    language: 'Dart',
-    level: '入門',
-    details: '掌握 Flutter 的基本概念，開發跨平台移動應用。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTakvB26C32UxyGSi4_7e18c2Ld5eVtxmDeDQ&s',
-    videoUrl: 'https://www.youtube.com/embed/BMsQz9udjsM?si=UYYcVVwQ24bwUha6',
-  },
-  {
-    title: 'Swift 基礎',
-    language: 'Swift',
-    level: '入門',
-    details: '學習 Swift 語言的基本語法，開發 iOS 應用。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbtXl4IT3pNtR2-l5BMYYL_A77an3zeS71Jw&s',
-    videoUrl: 'https://www.youtube.com/embed/GIt1BJJNdTI&list=PLXM8k1EWy5kiAD0o69R00b7I62ZVUyfJJ',
-  },
-  {
-    title: 'C++ 程式設計',
-    language: 'C++',
-    level: '入門',
-    details: '從零開始學習 C++ 語言，掌握基本語法和概念。',
-    category: '程式入門',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFX5G6ulyLMywrThzH_UvTHHZ3EpY8w02aMw&s',
-    videoUrl: 'https://www.youtube.com/embed/dDFZ9v9MOJA?si=tLdiBgiqLSDDfz1i',
-  },
-  {
-    title: 'Git 版本控制',
-    language: 'Git',
-    level: '入門',
-    details: '學習如何使用 Git 進行版本控制和協作開發。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgWSF4KdUUZGVPLkGEF9hT_nFuID-cQ6SrXg&s',
-    videoUrl: 'https://www.youtube.com/embed/FKXRiAiQFiY?si=feA9wSGHlxbVIV2Y',
-  },
-  {
-    title: '機器學習入門',
-    language: 'Python',
-    level: '進階',
-    details: '了解機器學習的基本原理和應用。',
-    category: '程式入門',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEkH8rJ8gMGJidN2yMbtRMAjAMNnQDETF-QQ&s',
-    videoUrl: 'https://www.youtube.com/embed/wm9yR1VspPs?si=aV9Td7IFC6aJ2BDJ',
-  },
-  {
-    title: '人工智慧概論',
-    language: '多種',
-    level: '進階',
-    details: '學習人工智慧的基本概念及其應用領域。',
-    category: '程式進階',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzvK0gu_ZgW67Rbkp9StMw2U5Ujgg2Zj7XKg&s',
-    videoUrl: 'https://www.youtube.com/embed/UGdG4WpluJ8',
-  }, 
-  {
-    title: 'Angular 框架',
-    language: 'TypeScript',
-    level: '進階',
-    details: '學習如何使用 Angular 開發動態的網頁應用程式。',
-    category: '程式進階',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYeezBYRuSj9s5_XiVBDWInTpoEjG_lNbzpA&s',
-    videoUrl: 'https://www.youtube.com/embed/F-kn4gULkjA?si=9boaBHXmMGLXet0H',
-  },
-  {
-    title: 'Ruby on Rails',
-    language: 'Ruby',
-    level: '進階',
-    details: '掌握 Ruby on Rails 框架的基本用法，快速開發網頁應用。',
-    category: '開發及管理',
-    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbSJQKORJhJIFiZzQECNTcYFsZqVZu2EEBQQ&s',
-    videoUrl: 'https://www.youtube.com/embed/2DvrRadXwWY',
-  },
-  {
-    title: 'SASS 和 LESS',
-    language: 'CSS',
-    level: '進階',
-    details: '學習使用 SASS 和 LESS 來增強 CSS 的功能。',
-    category: '程式進階',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/250px-Bootstrap_logo.svg.png',
-    videoUrl: 'https://www.youtube.com/embed/oIU8pRHI1pg',
-  },
-  {
-    title: 'Apache 和 Nginx 伺服器',
-    language: '伺服器管理',
-    level: '進階',
-    details: '學習如何設置和管理 Apache 和 Nginx 伺服器。',
-    category: '開發及管理',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Floridaserversfront1.jpg/960px-Floridaserversfront1.jpg',
-    videoUrl: 'https://www.youtube.com/embed/yRUZ7gCo7gws&list=PL2SrkGHjnWcwe-wh-JpOPNldKBh0094GH',
-  },
-  {
-    title: 'Docker 基礎',
-    language: '容器技術',
-    level: '入門',
-    details: '了解 Docker 的基本概念，學習如何使用容器化應用程式。',
-    category: '程式進階',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/330px-Microsoft_Azure.svg.png',
-    videoUrl: 'https://www.youtube.com/embed/b4DwqWyzo2g&list=PLwsxs98AQGIH4Z726_6QQ4xtSpJxcQ5pO',
-  },
-
-  
-];
-
-      const itemList = document.getElementById('item-list');
-
-      function renderItems(filteredItems) {
-        itemList.innerHTML = '';
-        filteredItems.forEach(item => {
-          const ionItem = document.createElement('ion-item');
-          ionItem.innerHTML = `
-            <div class="item-content">
-              <div class="item-title">${item.title}</div>
-              <div class="item-subtitle">${item.language} - ${item.level}</div>
-              <div class="item-details">${item.details}</div>
-              <div class="tag-container">
-                <ion-chip size="small">${item.category}</ion-chip>
-              </div>
-              <img src="${item.imageUrl}" alt="${item.title}" style="width:100%; max-width:800px;">
-              <div class="video-container">
-                <iframe width="100%" height="200" src="${item.videoUrl}" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </div>
-          `;
-          itemList.appendChild(ionItem);
-        });
-      }
-
-      const searchbar = document.querySelector('ion-searchbar');
-      const select = document.querySelector('ion-select');
-
-      searchbar.addEventListener('ionInput', (event) => {
-        const query = event.target.value.toLowerCase();
-        const filteredItems = items.filter(item => 
-          item.title.toLowerCase().includes(query) || 
-          item.details.toLowerCase().includes(query)
-        );
-        renderItems(filteredItems);
-      });
-
-      select.addEventListener('ionChange', (event) => {
-        const category = event.detail.value;
-        const filteredItems = category ? items.filter(item => item.category === category) : items;
-        renderItems(filteredItems);
-      });
-
-      // 初始渲染
-      renderItems(items);
-    </script>
   </body>
 </html>
