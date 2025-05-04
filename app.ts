@@ -50,30 +50,40 @@ skeletonSlide.innerHTML = `
 // 書籤功能
 async function bookmarkItem(item_id: number, icon: HTMLIonIconElement) {
   const token = localStorage.getItem('token') || '';
-  try {
-    const res = await fetch(`${baseUrl}/bookmarks/${item_id}`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const json = await res.json();
-    if (json.error) {
-      throw new Error(json.error);
-    }
-    successToast.message = json.message === 'newly bookmarked' ? '已添加書籤' : '書籤已存在';
-    successToast.present();
-    if (json.message === 'newly bookmarked') {
-      bookmarkedItems.push(item_id);
-      icon.classList.add('bookmarked');
-      icon.name = 'bookmark';
-      if (showBookmarksOnly) {
-        currentPage = 1;
-        loadItems();
+
+
+
+  let error = null;
+  for (let i = 0; i < 3; i++) {
+    try {
+      const res = await fetch(`${baseUrl}/bookmarks/${item_id}`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const json = await res.json();
+      if (json.error) {
+        throw new Error(json.error);
       }
+      successToast.message = json.message === 'newly bookmarked' ? '已添加書籤' : '書籤已存在';
+      successToast.present();
+      if (json.message === 'newly bookmarked') {
+        bookmarkedItems.push(item_id);
+        icon.classList.add('bookmarked');
+        icon.name = 'bookmark';
+        if (showBookmarksOnly) {
+          currentPage = 1;
+          loadItems();
+        }
+      }
+      return
+    } catch (err) {
+      error = err;
+      console.error('submit bookmark error, retrying:', err);
     }
-  } catch (error) {
-    errorToast.message = `添加書籤失敗：${error}`;
-    errorToast.present();
   }
+
+  errorToast.message = `添加書籤失敗：${error}`;
+  errorToast.present();
 }
 
 async function unBookmarkItem(item_id: number, icon: HTMLIonIconElement) {
@@ -245,8 +255,21 @@ function getYouTubeVideoId(url: string): string | null {
   return match ? match[1] : null;
 }
 
+type UIItem = {
+  id: number;
+  title: string;
+  language: string;
+  reference: string;
+  details: string;
+  category: string;
+  tags: string[];
+  imageUrl: string;
+  videoUrl: string;
+  date: string;
+}
+
 // 渲染產品到 UI
-function renderItems(items: any[], append: boolean = false) {
+function renderItems(items: UIItem[], append: boolean = false) {
   if (!append) {
     hardwareSlides.textContent = '';
   }
@@ -275,7 +298,8 @@ function renderItems(items: any[], append: boolean = false) {
       <ion-card-content class="card-content">
         <p class="item-description">${item.details}</p>
         <p class="item-subtitle">類別：${item.category}</p>
-        <p class="item-subtitle">組件：${item.language}</p>
+        <p class="item-subtitle">語言：${item.language}</p>
+        <p class="item-subtitle">參考資料：${item.reference}</p>
         <p class="item-subtitle">發布日期：${new Date(item.date).toLocaleDateString()}</p>
         <div class="tag-container">
           ${item.tags.map((tag: string) => `<ion-chip>${tag}</ion-chip>`).join('')}
@@ -370,14 +394,14 @@ async function loadItems(append: boolean = false) {
       params.set('ids', bookmarkedItems.join(','));
     }
 
-    console.log('Fetch URL:', `${baseUrl}/hardware?${params}`);
-    let res = await fetch(`${baseUrl}/hardware?${params}`, {
+    console.log('Fetch URL:', `${baseUrl}/wiki-entries?${params}`);
+    let res = await fetch(`${baseUrl}/wiki-entries?${params}`, {
       method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!res.ok) {
       const text = await res.text();
-      console.error('Hardware response:', text);
+      console.error('wiki-entries response:', text);
       errorToast.message = `加載產品失敗，服務器返回 ${res.status}`;
       errorToast.present();
       isLoading = false;
@@ -399,24 +423,29 @@ async function loadItems(append: boolean = false) {
     type ServerItem = {
       id: number;
       tags: string[];
-      license: string;
-      schematic_url: string;
-      manufacturer: string;
+      last_editor: string;
+      last_edit_date: string;
+      views: number;
+      created_at: string;
+      updated_at: string;
       title: string;
       description: string;
       category: string;
       image_url: string;
       video_url: string;
       published_at: string;
-      components: string[];
+      languages: string[];
+      references: string[];
     };
 
+
     let serverItems = json.items as ServerItem[];
-    let uiItems = serverItems.map((item: ServerItem) => {
+    let uiItems = serverItems.map((item: ServerItem): UIItem => {
       return {
         id: item.id,
         title: item.title,
-        language: item.components.join(', '),
+        language: item.languages.join(', '),
+        reference: item.references.join(', '),
         details: item.description,
         category: item.category,
         tags: item.tags,
